@@ -1,3 +1,6 @@
+### This is based on the original work by David Lomas (https://github.com/codersaur/SmartThings/tree/master/smartapps/influxdb-logger)
+
+
 # InfluxDB Logger
 
 Copyright (c) [David Lomas](https://github.com/codersaur)
