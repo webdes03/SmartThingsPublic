@@ -31,13 +31,13 @@
  *****************************************************************************************************************/
 definition(
     name: "InfluxDB Logger",
-    namespace: "codersaur",
+    namespace: "webdes03",
     author: "David Lomas (codersaur)",
     description: "Log SmartThings device states to InfluxDB",
-    category: "My Apps",
-    iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
-    iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
-    iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png")
+    category: "Data & Analytics",
+    iconUrl: "http://cdn.device-icons.smartthings.com/secondary/activity.png",
+    iconX2Url: "http://cdn.device-icons.smartthings.com/secondary/activity@2x.png",
+    iconX3Url: "http://cdn.device-icons.smartthings.com/secondary/activity@3x.png")
 
 preferences {
 
