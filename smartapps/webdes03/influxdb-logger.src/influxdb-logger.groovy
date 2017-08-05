@@ -34,7 +34,7 @@ definition(
     namespace: "webdes03",
     author: "David Lomas (codersaur)",
     description: "Log SmartThings device states to InfluxDB",
-    category: "Data & Analytics",
+    category: "My Apps",
     iconUrl: "http://cdn.device-icons.smartthings.com/secondary/activity.png",
     iconX2Url: "http://cdn.device-icons.smartthings.com/secondary/activity@2x.png",
     iconX3Url: "http://cdn.device-icons.smartthings.com/secondary/activity@3x.png")
