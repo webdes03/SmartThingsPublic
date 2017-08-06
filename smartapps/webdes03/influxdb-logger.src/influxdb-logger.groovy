@@ -35,9 +35,9 @@ definition(
     author: "David Lomas (codersaur)",
     description: "Log SmartThings device states to InfluxDB",
     category: "My Apps",
-    iconUrl: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience.png",
-    iconX2Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png",
-    iconX3Url: "https://s3.amazonaws.com/smartapp-icons/Convenience/Cat-Convenience@2x.png")
+    iconUrl: "http://cdn.device-icons.smartthings.com/secondary/activity.png",
+    iconX2Url: "http://cdn.device-icons.smartthings.com/secondary/activity@2x.png",
+    iconX3Url: "http://cdn.device-icons.smartthings.com/secondary/activity@3x.png")
 
 preferences {
 
@@ -790,8 +790,15 @@ private escapeStringForInfluxDB(str) {
 private getGroupName(id) {
 
     if (id == null) {return 'Home'}
-    //else if (id == 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX') {return 'Kitchen'}
-    //else if (id == 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX') {return 'Lounge'}
-    else if (id == 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX') {return 'Office'}
+    else if (id == '3ec7ccae-dd35-4111-a27f-d57569e4a67d') {return 'Exterior'}
+    else if (id == '08cb9375-cda0-4506-86c0-7f256b3fa174') {return 'Kitchen'}
+    else if (id == '316da156-9bd0-46a6-b5d4-1c36503930ab') {return 'Dining Room'}
+    else if (id == '40cf3ca5-a8c0-48d7-aa29-934e8fe46e21') {return 'Office'}
+    else if (id == '833810f2-9593-495a-861a-82b872eaa32e') {return 'Living Room'}
+    else if (id == 'aad4fbb7-7bfe-4861-a62d-dcb65823ace3') {return 'Attic'}
+    else if (id == 'd07a7b55-6148-47fb-92b2-8ffe961266df') {return 'Garage'}
+    else if (id == 'dfe86a76-54cd-47ae-9980-15d254e6cb37') {return 'Master Bedroom'}
+    else if (id == 'fd1a5930-f28d-44b4-b41e-9ed7312fff52') {return 'Study'}
+    // else if (id == 'ID') {return 'RoomName'}
     else {return 'Unknown'}    
 }
