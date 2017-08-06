@@ -790,6 +790,7 @@ private escapeStringForInfluxDB(str) {
 private getGroupName(id) {
 
     if (id == null) {return 'Home'}
+    // each group should be added after this line
     else if (id == '3ec7ccae-dd35-4111-a27f-d57569e4a67d') {return 'Exterior'}
     else if (id == '08cb9375-cda0-4506-86c0-7f256b3fa174') {return 'Kitchen'}
     else if (id == '316da156-9bd0-46a6-b5d4-1c36503930ab') {return 'Dining Room'}
@@ -799,6 +800,6 @@ private getGroupName(id) {
     else if (id == 'd07a7b55-6148-47fb-92b2-8ffe961266df') {return 'Garage'}
     else if (id == 'dfe86a76-54cd-47ae-9980-15d254e6cb37') {return 'Master Bedroom'}
     else if (id == 'fd1a5930-f28d-44b4-b41e-9ed7312fff52') {return 'Study'}
-    // else if (id == 'ID') {return 'RoomName'}
+    // do not edit after this line
     else {return 'Unknown'}    
 }
