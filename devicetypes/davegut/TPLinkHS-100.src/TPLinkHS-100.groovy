@@ -1,4 +1,6 @@
 /*
+Forked from https://github.com/DaveGut/Cloud-Based_TP-Link-to-SmartThings-Integration/tree/master/Device%20Handlers
+
 TP-Link Plugs and Switches Version 2.0
 
 Copyright 2017 Dave Gutheinz
