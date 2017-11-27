@@ -6,8 +6,6 @@ metadata {
 	tiles {
 		multiAttributeTile(name:"switch", type: "lighting", width: 6, height: 4, canChangeIcon: true){
 			tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
-				attributeState "on", label:'${name}', action:"switch.off", icon:"st.switches.light.on", backgroundColor:"#00a0dc",
-				nextState:"turningOff"
 				attributeState "off", label:'${name}', action:"switch.on", icon:"st.switches.light.off", backgroundColor:"#ffffff",
 				nextState:"turningOn"
 				attributeState "turningOn", label:'${name}', action:"switch.off", icon:"st.switches.light.on", backgroundColor:"#e86d13",
@@ -16,6 +14,8 @@ metadata {
 				nextState:"turningOn"
                 attributeState "offline", label:'Device Offline', action:"switch.on", icon:"st.switches.switch.off", backgroundColor:"##e86d13",
                 nextState:"turningOn"
+				attributeState "on", label:'${name}', action:"switch.off", icon:"st.switches.light.on", backgroundColor:"#00a0dc",
+				nextState:"turningOff"
 			}
 		}
 		standardTile("refresh", "capability.refresh", width: 2, height: 2,  decoration: "flat") {
@@ -69,7 +69,7 @@ def hubActionResponse(response){
  		sendEvent(name: "switch", value: "offline", isStateChange: true)
 	} else {
 		def status = cmdResponse.system.get_sysinfo.relay_state
-		if (status == 1) {
+		if (status == "ON") {
 			status = "on"
 		} else {
    	     status = "off"
