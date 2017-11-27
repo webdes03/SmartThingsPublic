@@ -30,7 +30,7 @@ Update History
 
 */
 metadata {
-	definition (name: "TP-Link_Plug_Switch", namespace: "V2.0", author: "Dave Gutheinz") {
+	definition (name: "TP-Link HS100 Switch", namespace: "V2.0", author: "Dave Gutheinz") {
 		capability "Switch"
 		capability "refresh"
 	}
