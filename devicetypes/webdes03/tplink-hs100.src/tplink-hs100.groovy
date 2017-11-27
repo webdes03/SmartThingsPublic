@@ -1,5 +1,6 @@
 /*
-Forked from https://github.com/DaveGut/DEPRECIATED-TP-Link-to-SmartThings-Integration by Dave Gutheinz, which is now depricated
+Forked from https://github.com/DaveGut/DEPRECIATED-TP-Link-to-SmartThings-Integration
+by Dave Gutheinz, which is now depricated
 
 TP-Link Plugs and Switches Version 2.0
 
@@ -31,7 +32,7 @@ Update History
 
 */
 metadata {
-	definition (name: "TPLink_HS100", namespace: "V1.0", author: "Michael Greene") {
+	definition (name: "TPLink_HS100", namespace: "webdes03", author: "Michael Greene") {
 		capability "Switch"
 		capability "refresh"
 	}
