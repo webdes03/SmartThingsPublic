@@ -30,7 +30,7 @@ preferences {
 	input("gatewayIP", "text", title: "Gateway IP", required: true, displayDuringSetup: true)
 	input("outletNumber", "text", title: "Outlet Number", required: true, displayDuringSetup: true)
 	input("authUsername", "text", title: "Username", required: true, displayDuringSetup: true)
-	input("authPassword", "password", title: "Password", required: true, displayDuringSetup: true)
+	input("authPassword", "text", title: "Password", required: true, displayDuringSetup: true)
 }
 def on() {
 	log.info "${device.name} ${device.label}: Turning ON"
@@ -68,7 +68,7 @@ def hubActionResponse(response){
 		log.error "$device.name $device.label: $cmdResponse.error"
  		sendEvent(name: "switch", value: "offline", isStateChange: true)
 	} else {
-		def status = cmdResponse.system.get_sysinfo.relay_state
+		def status = cmdResponse
 		if (status == "ON") {
 			status = "on"
 		} else {
