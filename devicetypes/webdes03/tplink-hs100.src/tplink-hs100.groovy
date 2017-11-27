@@ -1,5 +1,5 @@
 /*
-Forked from https://github.com/DaveGut/Cloud-Based_TP-Link-to-SmartThings-Integration/tree/master/Device%20Handlers
+Forked from https://github.com/DaveGut/DEPRECIATED-TP-Link-to-SmartThings-Integration by Dave Gutheinz, which is now depricated
 
 TP-Link Plugs and Switches Version 2.0
 
@@ -27,10 +27,11 @@ Update History
 	04/08/2017	- Version 2.0.  Added plug/switch TCP timeout (i.e., not connected to 
     		      network at IP.  Rearranged some functions.  Added color coding to
 			      indicate switch/plug is turning on or off.  Added some notes.	
+	11/27/2017	- Forked from Dave Gutheinz
 
 */
 metadata {
-	definition (name: "TP-Link_HS100_Switch", namespace: "V2.0", author: "Dave Gutheinz") {
+	definition (name: "TPLink_HS100", namespace: "V1.0", author: "Michael Greene") {
 		capability "Switch"
 		capability "refresh"
 	}
