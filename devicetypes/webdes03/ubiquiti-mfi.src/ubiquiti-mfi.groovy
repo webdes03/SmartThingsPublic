@@ -63,18 +63,12 @@ def onOffResponse(response){
 	refresh()
 }
 def hubActionResponse(response){
-	def cmdResponse = parseJson(response.headers["cmd-response"])
-	if (cmdResponse.error == "TCP Timeout") {
-		log.error "$device.name $device.label: $cmdResponse.error"
- 		sendEvent(name: "switch", value: "offline", isStateChange: true)
+	def cmdResponse = response.headers["cmd-response"]
+	if (cmdResponse == "ON") {
+		status = "on"
 	} else {
-		def status = cmdResponse
-		if (status == "ON") {
-			status = "on"
-		} else {
-   	     status = "off"
-		}
-		log.info "${device.name} ${device.label}: Power: ${status}"
-		sendEvent(name: "switch", value: status, isStateChange: true)
+		status = "off"
 	}
+	log.info "${device.name} ${device.label}: Power: ${status}"
+	sendEvent(name: "switch", value: status, isStateChange: true)
 }
