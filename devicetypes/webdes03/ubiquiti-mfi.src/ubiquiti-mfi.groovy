@@ -34,11 +34,11 @@ preferences {
 }
 def on() {
 	log.info "${device.name} ${device.label}: Turning ON"
-	sendCmdtoServer('ON', "onOffResponse")
+	sendCmdtoServer('ON', "hubActionResponse")
 }
 def off() {
 	log.info "${device.name} ${device.label}: Turning OFF"
-	sendCmdtoServer('OFF', "onOffResponse")
+	sendCmdtoServer('OFF', "hubActionResponse")
 }
 def refresh(){
 	log.info "Polling ${device.name} ${device.label}"
@@ -63,8 +63,7 @@ def onOffResponse(response){
 	refresh()
 }
 def hubActionResponse(response){
-	def cmdResponse = response.headers["cmd-response"]
-	if (cmdResponse == "ON") {
+	if (response.headers["cmd-response"] == "ON") {
 		status = "on"
 	} else {
 		status = "off"
