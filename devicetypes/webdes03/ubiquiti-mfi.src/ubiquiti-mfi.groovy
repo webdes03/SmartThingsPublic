@@ -6,16 +6,16 @@ metadata {
 	tiles {
 		multiAttributeTile(name:"switch", type: "lighting", width: 6, height: 4, canChangeIcon: true){
 			tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
+				attributeState "on", label:'${name}', action:"switch.off", icon:"st.switches.light.on", backgroundColor:"#00a0dc",
+				nextState:"turningOff"
 				attributeState "off", label:'${name}', action:"switch.on", icon:"st.switches.light.off", backgroundColor:"#ffffff",
 				nextState:"turningOn"
 				attributeState "turningOn", label:'${name}', action:"switch.off", icon:"st.switches.light.on", backgroundColor:"#e86d13",
 				nextState:"turningOff"
 				attributeState "turningOff", label:'${name}', action:"switch.on", icon:"st.switches.light.off", backgroundColor:"#e86d13",
 				nextState:"turningOn"
-                attributeState "offline", label:'Device Offline', action:"switch.on", icon:"st.switches.switch.off", backgroundColor:"##e86d13",
-                nextState:"turningOn"
-				attributeState "on", label:'${name}', action:"switch.off", icon:"st.switches.light.on", backgroundColor:"#00a0dc",
-				nextState:"turningOff"
+                attributeState "offline", label:'Bulb Offline', action:"switch.on", icon:"st.switches.switch.off", backgroundColor:"##e86d13",
+                nextState:"turningOn"				
 			}
 		}
 		standardTile("refresh", "capability.refresh", width: 2, height: 2,  decoration: "flat") {
@@ -63,7 +63,7 @@ def onOffResponse(response){
 	refresh()
 }
 def hubActionResponse(response){
-	if (response.headers["cmd-response"] == "ON") {
+	if (response.headers["cmd-response"].trim() == "ON") {
 		status = "on"
 	} else {
 		status = "off"
