@@ -63,10 +63,9 @@ def onOffResponse(response){
 	refresh()
 }
 def hubActionResponse(response){
+	def status = "off"
 	if (response.headers["cmd-response"].trim() == "ON") {
 		status = "on"
-	} else {
-		status = "off"
 	}
 	log.info "${device.name} ${device.label}: Power: ${status}"
 	sendEvent(name: "switch", value: status, isStateChange: true)
