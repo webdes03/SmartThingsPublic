@@ -27,8 +27,6 @@ metadata {
 		capability "Switch"
 		capability "Color Control"
 		command "setAdjustedColor"
-		command "on"
-		command "off"
 	}
 	tiles {
 		controlTile("rgbSelector", "device.color", "color", height: 3, width: 3, inactiveLabel: false) {
