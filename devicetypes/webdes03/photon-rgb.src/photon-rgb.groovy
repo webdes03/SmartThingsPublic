@@ -26,6 +26,7 @@ metadata {
 	definition (name: "Particle Photon RGB", namespace: "webdes03", author: "Michael Greene") {
 		capability "Switch"
 		capability "Color Control"
+		capability "refresh"
 	}
 	tiles {
 		controlTile("rgbSelector", "device.color", "color", height: 3, width: 3, inactiveLabel: false) {
@@ -37,6 +38,8 @@ metadata {
             state "turningOn", label:'${name}', icon:"st.illuminance.illuminance.bright", backgroundColor:"#79b821"
             state "turningOff", label:'${name}', icon:"st.illuminance.illuminance.dark", backgroundColor:"#ffffff"
 		}
+		main("rgbSelector")
+		details(["switch", "refresh"])
     }
 }
 preferences {
