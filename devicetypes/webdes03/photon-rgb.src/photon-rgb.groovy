@@ -22,6 +22,7 @@ Update History
 	12/06/2017	- Created initial implementation (Version 1.0)
 
 */
+
 metadata {
 	definition (name: "Particle Photon RGB", namespace: "webdes03", author: "Michael Greene") {
 		capability "Switch"
@@ -40,7 +41,6 @@ metadata {
 			attributeState "color", action:"color control.setColor"
 		}
 	}
-
 	main("switch")
 	details(["switch", "refresh"])
 }
@@ -54,10 +54,12 @@ def on() {
 	log.info "${device.name} ${device.label}: Turning ON"
 	sendParticleCommand('on')
 }
+
 def off() {
 	log.info "${device.name} ${device.label}: Turning OFF"
 	sendParticleCommand('off')
 }
+
 def refresh(){
 	log.info "Polling ${device.name}"
 	def params = [
@@ -98,6 +100,7 @@ private sendParticleCommand(command){
     	}
 	}
 }
+
 private sendParticleColorCommand(rgb, hex){
 	log.debug "set color: ${rgb}"
 	def params = [
