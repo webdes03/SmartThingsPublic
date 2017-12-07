@@ -19,7 +19,7 @@ Notes:
 	own risk.
 
 Update History
-	12/06/2017	- Created initial rendition.  Version 1.0
+	12/06/2017	- Created initial implementation (Version 1.0)
 
 */
 metadata {
@@ -28,61 +28,90 @@ metadata {
 		capability "Color Control"
 		capability "refresh"
 	}
-	tiles {
-		controlTile("rgbSelector", "device.color", "color", height: 3, width: 3, inactiveLabel: false) {
-			state "color", action:"setAdjustedColor"
+	
+	multiAttributeTile(name:"switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
+		tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
+			attributeState "on", label:'${name}', action:"switch.off", icon:"st.Lighting.light18", backgroundColor:"#00a0dc", nextState:"turningOff"
+			attributeState "off", label:'${name}', action:"switch.on", icon:"st.Lighting.light18", backgroundColor:"#ffffff", nextState:"turningOn"
+			attributeState "turningOn", label:'${name}', action:"switch.off", icon:"st.Lighting.light18", backgroundColor:"#00a0dc", nextState:"on"
+			attributeState "turningOff", label:'${name}', action:"switch.on", icon:"st.Lighting.light18", backgroundColor:"#ffffff", nextState:"off"
 		}
-		standardTile("switch", "device.switch", width: 1, height: 1, canChangeIcon: true) {
-        	state "on", label:'${name}', action:"switch.off", icon:"st.illuminance.illuminance.bright", backgroundColor:"#79b821", nextState:"turningOff"
-            state "off", label:'${name}', action:"switch.on", icon:"st.illuminance.illuminance.dark", backgroundColor:"#ffffff", nextState:"turningOn"
-            state "turningOn", label:'${name}', icon:"st.illuminance.illuminance.bright", backgroundColor:"#79b821"
-            state "turningOff", label:'${name}', icon:"st.illuminance.illuminance.dark", backgroundColor:"#ffffff"
+		tileAttribute ("device.color", key: "COLOR_CONTROL") {
+			attributeState "color", action:"color control.setColor"
 		}
-		main("rgbSelector")
-		details(["switch", "refresh"])
-    }
+	}
+
+	main("switch")
+	details(["switch", "refresh"])
 }
+
 preferences {
 	input("deviceId", "text", title: "Device ID", required: true, displayDuringSetup: true)
 	input("authorizationToken", "text", title: "Authorization Token", required: true, displayDuringSetup: true)
 }
+
 def on() {
 	log.info "${device.name} ${device.label}: Turning ON"
-	sendParticleCommand('on', "onOffResponse")
+	sendParticleCommand('on')
 }
 def off() {
 	log.info "${device.name} ${device.label}: Turning OFF"
-	sendCmdtoServer('off', "onOffResponse")
+	sendParticleCommand('off')
 }
 def refresh(){
-	log.info "Polling ${device.name} ${device.label}"
-	sendCmdtoServer('{"system":{"get_sysinfo":{}}}', "hubActionResponse")
-}
-private sendParticleCommand(command, action){
-	sendHubCommand(new physicalgraph.device.HubAction(
-		method: "POST",
-		path: "https://api.particle.io/v1/devices/$deviceId/color?access_token=$authorizationToken",
- 		query: [arg: "$command"],
- 		[callback: action]
-	))
-}
-def onOffResponse(response){
-	log.info "On/Off command response received from server!"
-	//refresh()
-}
-def hubActionResponse(response){
-	def cmdResponse = parseJson(response.headers["cmd-response"])
-	if (cmdResponse.error == "TCP Timeout") {
-		log.error "$device.name $device.label: $cmdResponse.error"
- 		sendEvent(name: "switch", value: "offline", isStateChange: true)
-	} else {
-		def status = cmdResponse.system.get_sysinfo.relay_state
+	log.info "Polling ${device.name}"
+	def params = [
+		uri: "https://api.particle.io/v1/devices/$deviceId/status?access_token=$authorizationToken",
+		body: [arg: $command]
+	]
+	httpPostJson(params) { resp ->
+		def status = resp.data.return_value
 		if (status == 1) {
 			status = "on"
-		} else {
-   	     status = "off"
+		} else if (status == 0) {
+			status = "off"
 		}
-		log.info "${device.name} ${device.label}: Power: ${status}"
+		log.info "${device.name} ${device.label}: Lights: ${status}"
 		sendEvent(name: "switch", value: status, isStateChange: true)
+	}
+}
+
+def setColor(value) {
+	log.debug "setAdjustedColor: ${value}"
+    
+    def rgbString = String.format('%03d', value.red) + "," + String.format('%03d', value.green) + "," + String.format('%03d', value.blue);
+	
+    sendParticleColorCommand(rgbString, value.hex)
+}
+
+private sendParticleCommand(command){
+	def params = [
+		uri: "https://api.particle.io/v1/devices/$deviceId/$command?access_token=$authorizationToken",
+		body: [arg: $command]
+	]
+	httpPostJson(params) { resp ->
+        if (resp.data.return_value == 1) {
+        	log.info "Call completed"
+            refresh()
+        } else {
+        	log.warn "Error somewhere"
+    	}
+	}
+}
+private sendParticleColorCommand(rgb, hex){
+	log.debug "set color: ${rgb}"
+	def params = [
+		uri: "https://api.particle.io/v1/devices/$deviceId/color?access_token=$authorizationToken",
+		body: [arg: "${rgb}"],
+        requestContentType: "application/x-www-form-urlencoded"
+	]
+	httpPostJson(params) { resp ->
+        if (resp.data.return_value == 1) {
+        	log.info "Call completed"
+            sendEvent(name: "switch", value: "on", isStateChange: true)
+            sendEvent(name: "color", value: hex, displayed: true)
+        } else {
+        	log.warn "Error somewhere"
+    	}
 	}
 }
