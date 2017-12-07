@@ -4,7 +4,7 @@ Photon-RGB allows for the control of RGB lighting using a [Particle Photon](http
 
 ## Parts List
 
-Amazon affiliate links are provided below to provide a centralized list of all components required for this project. This list represents a single 2M strip. Components such as the MOSFETs and resistors are cheaper in packs of 10+ than buying individual, so you may have leftover components. Based on these costs and buying the items listed below, each 2M strip costs around $40. This list is subject to change as the design becomes finalized. I'm also working on custom PCBs to mount the components.
+Amazon affiliate links are provided below as a centralized list of all components required for this project. This list represents a single 2M strip. Components such as the MOSFETs and resistors are cheaper in packs of 10+ than buying individual, so you may have leftover components. Based on these costs and buying the items listed below, each 2M strip costs around $40. This list is subject to change as the design becomes finalized. I'm also working on custom PCBs to mount the components.
 
 * [Particle Photon](http://amzn.to/2kAbdeQ) (x1)
 * [N-Channel MOSFET (FQP30N06L or equivelant)](http://amzn.to/2j1Vncg) (x3)
