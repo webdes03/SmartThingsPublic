@@ -24,7 +24,7 @@ Update History
 */
 
 metadata {
-	definition (name: "Particle Photon RGB", namespace: "webdes03", author: "Michael Greene") {
+	definition (name: "photon-rgb", namespace: "webdes03", author: "Michael Greene") {
 		capability "Switch"
 		capability "Color Control"
 		capability "refresh"
