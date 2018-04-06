@@ -17,10 +17,10 @@
  *  For more information, see https://github.com/project802/smartthings/unifi_nvr
  */
 definition(
-    name: "UniFi NVR",
+    name: "Unifi NVR",
     namespace: "project802",
     author: "Chris Vincent",
-    description: "UniFi NVR SmartApp",
+    description: "Unifi NVR SmartApp",
     category: "My Apps",
     iconUrl: "http://project802.net/smartthings/smartapp-icons/ubiquiti_nvr.png",
     iconX2Url: "http://project802.net/smartthings/smartapp-icons/ubiquiti_nvr_2x.png",
