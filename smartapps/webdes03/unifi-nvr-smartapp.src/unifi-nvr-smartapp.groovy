@@ -17,7 +17,7 @@
  *  For more information, see https://github.com/project802/smartthings/unifi_nvr
  */
 definition(
-    name: "Unifi NVR",
+    name: "Unifi NVR SmartApp",
     namespace: "project802",
     author: "Chris Vincent",
     description: "Unifi NVR SmartApp",
