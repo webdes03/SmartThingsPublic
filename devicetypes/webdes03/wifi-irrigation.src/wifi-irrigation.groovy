@@ -64,7 +64,7 @@ private sendParticleCommand(command){
 	]
 	httpPostJson(params) { resp ->
 		def status = "off"
-        if (resp.data.return_value == 1 && $command == "relayOn") {
+        if (resp.data.return_value == 1 && command == "relayOn") {
 			status = "on"
 		}
 		log.info "${device.name} ${device.label}: Status: ${status}"
