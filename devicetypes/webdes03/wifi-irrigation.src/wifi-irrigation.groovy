@@ -63,8 +63,7 @@ private sendParticleCommand(command){
 		body: [arg: relayNumber]
 	]
 	httpPostJson(params) { resp ->
-		def return_value = resp.data.return_value
-		if (return_value == 1 && command == "relayOn") {
+		if (resp.data.return_value == 1 && $command == "relayOn") {
 			status = "on"
 		} else {
 			status = "off"
