@@ -49,22 +49,22 @@ preferences {
 
 def on() {
 	log.info "${device.name} ${device.label}: Turning ON"
-	sendParticleCommand('relayOn', $relayNumber)
+	sendParticleCommand('relayOn')
 }
 
 def off() {
 	log.info "${device.name} ${device.label}: Turning OFF"
-	sendParticleCommand('relayOff', $relayNumber)
+	sendParticleCommand('relayOff')
 }
 
 private sendParticleCommand(command){
 	def params = [
 		uri: "https://api.particle.io/v1/devices/$deviceId/$command?access_token=$authorizationToken",
-		body: [arg: "$relayNumber"]
+		body: [arg: relayNumber]
 	]
 	httpPostJson(params) { resp ->
 		def return_value = resp.data.return_value
-		if (return_value == 1 && $command == "relayOn") {
+		if (return_value == 1 && command == "relayOn") {
 			status = "on"
 		} else {
 			status = "off"
