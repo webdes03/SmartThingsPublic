@@ -63,10 +63,9 @@ private sendParticleCommand(command){
 		body: [arg: relayNumber]
 	]
 	httpPostJson(params) { resp ->
-		if (resp.data.return_value == 1 && $command == "relayOn") {
+		def status = "off"
+        if (resp.data.return_value == 1 && $command == "relayOn") {
 			status = "on"
-		} else {
-			status = "off"
 		}
 		log.info "${device.name} ${device.label}: Status: ${status}"
 		sendEvent(name: "switch", value: status, isStateChange: true)
