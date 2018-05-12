@@ -29,12 +29,12 @@ metadata {
 		capability "Switch"
 	}
 	
-	multiAttributeTile(name:"switch", type: "lighting", width: 6, height: 4, canChangeIcon: true) {
+	multiAttributeTile(name:"switch", type: "generic", width: 6, height: 4, canChangeIcon: true) {
 		tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
-			attributeState "off", label:'${name}', action:"switch.off", icon:"st.Lighting.light18", backgroundColor:"#ffffff", nextState:"turningOn"
-			attributeState "on", label:'${name}', action:"switch.on", icon:"st.Lighting.light18", backgroundColor:"#47bd18", nextState:"turningOff"
-			attributeState "turningOn", label:'${name}', action:"switch.off", icon:"st.Lighting.light18", backgroundColor:"#e5e5e5", nextState:"on"
-			attributeState "turningOff", label:'${name}', action:"switch.on", icon:"st.Lighting.light18", backgroundColor:"#e5e5e5", nextState:"off"
+			attributeState "off", label:'${name}', action:"switch.on", icon:"st.Outdoor.outdoor12", backgroundColor:"#ffffff", nextState:"turningOn"
+			attributeState "on", label:'${name}', action:"switch.off", icon:"st.Outdoor.outdoor12", backgroundColor:"#47bd18", nextState:"turningOff"
+			attributeState "turningOn", label:'${name}', action:"switch.on", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5", nextState:"on"
+			attributeState "turningOff", label:'${name}', action:"switch.off", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5", nextState:"off"
 		}		
 	}
 	main("switch")
@@ -57,10 +57,10 @@ def off() {
 	sendParticleCommand('relayOff', $relayNumber)
 }
 
-private sendParticleCommand(command, relayNumber){
+private sendParticleCommand(command){
 	def params = [
 		uri: "https://api.particle.io/v1/devices/$deviceId/$command?access_token=$authorizationToken",
-		body: [arg: $relayNumber]
+		body: [arg: "$relayNumber"]
 	]
 	httpPostJson(params) { resp ->
 		def return_value = resp.data.return_value
