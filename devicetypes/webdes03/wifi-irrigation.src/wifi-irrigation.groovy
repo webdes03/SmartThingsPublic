@@ -74,7 +74,7 @@ private getParticleRelayStatus() {
 	]
 	httpGet(params) { resp ->
 		def status = "off"
-		if (resp.result == 1) {
+		if (resp.data.result == 1) {
 			status = "on"
 		}
 		log.info "${device.name} ${device.label}: Status: ${status}"
