@@ -70,11 +70,11 @@ private getParticleRelayStatus() {
 	def queryVariable = "valve${relayNumber}"
 	log.info "attempting to get status of ${queryVariable}"
 	def params = [
-		uri: "https://api.particle.io/v1/devices/$deviceId/$queryVariable?access_token=$authorizationToken"
+		uri: "https://api.particle.io/v1/devices/$deviceId/${queryVariable}?access_token=$authorizationToken"
 	]
 	httpPostJson(params) { resp ->
 		def status = "off"
-		if (resp == 1) {
+		if (resp.result == 1) {
 			status = "on"
 		}
 		log.info "${device.name} ${device.label}: Status: ${status}"
