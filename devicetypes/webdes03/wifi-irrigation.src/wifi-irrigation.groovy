@@ -69,7 +69,7 @@ def refresh(){
 private getParticleRelayStatus() {
 	def queryVariable = "valve${relaynumber}"
 	def params = [
-		uri: "https://api.particle.io/v1/devices/$deviceId/$command?access_token=$authorizationToken"
+		uri: "https://api.particle.io/v1/devices/$deviceId/$queryVariable?access_token=$authorizationToken"
 	]
 	httpPostJson(params) { resp ->
 		def status = "off"
