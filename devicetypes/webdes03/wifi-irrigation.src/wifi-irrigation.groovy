@@ -27,6 +27,7 @@ Update History
 metadata {
 	definition (name: "wifi-irrigation", namespace: "webdes03", author: "Michael Greene") {
 		capability "Switch"
+		capability "refresh"
 	}
 	
 	multiAttributeTile(name:"switch", type: "generic", width: 6, height: 4, canChangeIcon: true) {
@@ -36,6 +37,9 @@ metadata {
 			attributeState "turningOn", label:'${name}', action:"switch.on", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5", nextState:"on"
 			attributeState "turningOff", label:'${name}', action:"switch.off", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5", nextState:"off"
 		}		
+	}
+	standardTile("refresh", "capability.refresh", width: 2, height: 2,  decoration: "flat") {
+		state ("default", label:"Refresh", action:"refresh.refresh", icon:"st.secondary.refresh")
 	}
 	main("switch")
 	details(["switch", "refresh"])
@@ -49,25 +53,42 @@ preferences {
 
 def on() {
 	log.info "${device.name} ${device.label}: Turning ON"
-	sendParticleCommand('relayOn')
+	sendParticleRelayCommand('relayOn')
 }
 
 def off() {
 	log.info "${device.name} ${device.label}: Turning OFF"
-	sendParticleCommand('relayOff')
+	sendParticleRelayCommand('relayOff')
 }
 
-private sendParticleCommand(command){
+def refresh(){
+	log.info "Polling ${device.name} ${device.label}"
+	getParticleRelayStatus()
+}
+
+private getParticleRelayStatus() {
+	def queryVariable = "valve${relaynumber}"
+	def params = [
+		uri: "https://api.particle.io/v1/devices/$deviceId/$command?access_token=$authorizationToken"
+	]
+	httpPostJson(params) { resp ->
+		def status = "off"
+		if (resp == 1) {
+			status = "on"
+		}
+		log.info "${device.name} ${device.label}: Status: ${status}"
+		sendEvent(name: "switch", value: status, isStateChange: true)
+	}
+}
+
+private sendParticleRelayCommand(command){
 	def params = [
 		uri: "https://api.particle.io/v1/devices/$deviceId/$command?access_token=$authorizationToken",
 		body: [arg: relayNumber]
 	]
 	httpPostJson(params) { resp ->
-		def status = "off"
-        if (resp.data.return_value == 1 && command == "relayOn") {
-			status = "on"
+        if (resp.data.return_value == 1) {
+			getParticleRelayStatus()
 		}
-		log.info "${device.name} ${device.label}: Status: ${status}"
-		sendEvent(name: "switch", value: status, isStateChange: true)
 	}
 }
