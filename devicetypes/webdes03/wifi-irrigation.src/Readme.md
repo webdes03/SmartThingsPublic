@@ -1,8 +1,9 @@
-*Disclaimer: This project is intended for users that understand basic electronics and wiring. No warranty is included, use at your own risk.*
+*Disclaimer:*
+*This project is intended for users that understand basic electronics and wiring. No warranty is included, use at your own risk.*
 
 ## Wifi-Irrigation Introduction
 
-Wifi-Irrigation allows for the control of up to four sprinkler valves using [SmartThings](https://smartthings.com) and a [Particle Photon](https://www.particle.io/). The build guide and parts list below are based on my build containing two sprinkler valves, but could be easily extended to support up to 4 valves/zones. Additional information, including a complete build guide is available at [https://mike-greene.com/wifi-irrigation].
+Wifi-Irrigation allows for the control of up to four sprinkler valves using [SmartThings](https://smartthings.com) and a [Particle Photon](https://www.particle.io/). The build guide and parts list below are based on my build containing two sprinkler valves, but could be easily extended to support up to 4 valves/zones. Additional information, including a complete build guide is available at https://mike-greene.com/wifi-irrigation.
 
 ## Software & Automation
 - [Particle Photon Sketch](https://github.com/webdes03/SmartThingsPublic/blob/master/devicetypes/webdes03/wifi-irrigation.src/wifi-irrigation.ino)
