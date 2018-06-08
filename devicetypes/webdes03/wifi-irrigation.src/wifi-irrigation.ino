@@ -2,8 +2,7 @@
 
 wifi-irrigation project for Particle Photon
 Copyright 2018 Michael Greene
-
-Full project guide available at mike-greene.com.
+https://mike-greene.com/wifi-irrigation
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this 
 file except in compliance with the License. You may obtain a copy of the License at:
