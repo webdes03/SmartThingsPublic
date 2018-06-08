@@ -1,5 +1,4 @@
-*Disclaimer:*
-*This project is intended for users that understand basic electronics and wiring. No warranty is included, use at your own risk.*
+*Disclaimer: This project is intended for users that understand basic electronics and wiring. No warranty is included, use at your own risk.*
 
 ## Wifi-Irrigation Introduction
 
