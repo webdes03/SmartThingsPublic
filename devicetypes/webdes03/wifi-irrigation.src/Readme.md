@@ -45,5 +45,5 @@ Wifi-Irrigation allows for the control of up to four sprinkler valves using [Sma
 ## Assembly
 ### Manifold
 
-![Assembly Animation](.\Assembly Animation.gif)
-![Assembly Animation](.\Assembly Complete.png)
+![Assembly Animation](https://github.com/webdes03/SmartThingsPublic/blob/master/devicetypes/webdes03/wifi-irrigation.src/Assembly%20Animation.gif)
+![Assembly Animation](https://github.com/webdes03/SmartThingsPublic/blob/master/devicetypes/webdes03/wifi-irrigation.src/Assembly%20Complete.png)
