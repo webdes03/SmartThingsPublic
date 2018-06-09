@@ -38,9 +38,9 @@ metadata {
 }
 
 preferences {
-	input("deviceId", "text", title: "Device ID", required: true, displayDuringSetup: true)
-	input("authorizationToken", "text", title: "Authorization Token", required: true, displayDuringSetup: true)
-    input("relayNumber", "text", title: "Relay ID (1-4)", required: true, displayDuringSetup: true)
+	input("deviceId", "text", title: "Device ID", required: true, displayDuringSetup: true) // particle device id
+	input("authorizationToken", "text", title: "Authorization Token", required: true, displayDuringSetup: true) // particle authorization id
+    input("relayNumber", "text", title: "Relay ID (1-4)", required: true, displayDuringSetup: true) // relay number (1-4) the valve is connected to
 }
 
 def on() {
