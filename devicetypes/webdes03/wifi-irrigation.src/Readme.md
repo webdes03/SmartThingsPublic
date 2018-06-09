@@ -8,7 +8,7 @@ Wifi-Irrigation allows for the control of up to four sprinkler valves using [Sma
 ## Table of Contents
 - [Parts List](https://github.com/webdes03/SmartThingsPublic/tree/master/devicetypes/webdes03/wifi-irrigation.src#parts-list)
 - [Assembly](https://github.com/webdes03/SmartThingsPublic/tree/master/devicetypes/webdes03/wifi-irrigation.src#assembly)
-..- [Manifold](https://github.com/webdes03/SmartThingsPublic/tree/master/devicetypes/webdes03/wifi-irrigation.src#manifold-1)
+⋅⋅* [Manifold](https://github.com/webdes03/SmartThingsPublic/tree/master/devicetypes/webdes03/wifi-irrigation.src#manifold-1)
 
 ## Parts List
 ### Controller
