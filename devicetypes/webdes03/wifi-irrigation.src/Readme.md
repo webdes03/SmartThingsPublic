@@ -50,6 +50,13 @@ Wifi-Irrigation allows for the control of up to four sprinkler valves using [Sma
 ![Assembly Animation](https://github.com/webdes03/SmartThingsPublic/blob/master/devicetypes/webdes03/wifi-irrigation.src/Assembly%20Animation.gif)
 ![Assembly Animation](https://github.com/webdes03/SmartThingsPublic/blob/master/devicetypes/webdes03/wifi-irrigation.src/Assembly%20Complete.png)
 
+1.	Using one of your pieces of 2” PVC, connect the garden hose adapter to one end, and the tee connector to the other.
+2.	With another piece of 2” PVC, connect an elbow connector to one side, and insert the other side into one of the 3/4" to 1/2" reducers (this is the reducer without any threads). Then insert the end with the reducer into one of the 3/4" to MIPT threaded adapters (which will later screw into one of the valves). Repeat this step so we have a second one for the second valve.
+3.	Take one of the 1/2" x 1-1/2” nipples, and screw one side into one of the 3/4" to 1/2” threaded reducer bushing. Screw one of the 4-port drip irrigation manifolds onto the other side of the nipple. Repeat this step so we have a second one for the second valve.
+4.	With one of the valves, connect one of the elbow subassemblies to the source side of the valve (as noted by the direction of the arrow). Connect one of the 4-port manifold subassemblies to the output side of the valve. Repeat this step with the second valve.
+5.	Lastly, using the two remaining 2” pieces of PVC, connect the elbow ends of the valve subassemblies to each side of the tee connector.
+
+
 ## Software & Automation
 - [Particle Photon Sketch](https://github.com/webdes03/SmartThingsPublic/blob/master/devicetypes/webdes03/wifi-irrigation.src/wifi-irrigation.ino)
 - [SmartThings Device Type](https://github.com/webdes03/SmartThingsPublic/blob/master/devicetypes/webdes03/wifi-irrigation.src/wifi-irrigation.groovy)
