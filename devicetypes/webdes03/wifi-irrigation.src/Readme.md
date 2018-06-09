@@ -42,3 +42,8 @@ Wifi-Irrigation allows for the control of up to four sprinkler valves using [Sma
 - [1/4" Rain Bird Distribution Tubing](https://amzn.to/2kSmjsi)
 - Assorted Drip Irrigation Emitters
 
+## Assembly
+### Manifold
+
+![Assembly Animation](.\Assembly Animation.gif)
+![Assembly Animation](.\Assembly Complete.png)
