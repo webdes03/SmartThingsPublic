@@ -21,9 +21,6 @@ metadata {
 		capability "Switch"
 		capability "Refresh"
 		capability "Polling"
-
-		log.info "${device.name}: Initializing"
-		getParticleRelayStatus()
 	}
 	
 	multiAttributeTile(name:"switch", type: "generic", width: 6, height: 4, canChangeIcon: true) {
@@ -46,6 +43,16 @@ preferences {
 	input("deviceId", "text", title: "Device ID", required: true, displayDuringSetup: true) // particle device id
 	input("authorizationToken", "text", title: "Authorization Token", required: true, displayDuringSetup: true) // particle authorization id
     input("relayNumber", "text", title: "Relay ID (1-4)", required: true, displayDuringSetup: true) // relay number (1-4) the valve is connected to
+}
+
+def installed() {
+	updated()
+}
+
+def updated() {
+	unschedule()
+	log.info "${device.name}: Initializing"
+	runEvery5Minutes(getParticleRelayStatus())
 }
 
 def on() {
