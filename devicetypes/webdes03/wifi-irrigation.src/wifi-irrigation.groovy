@@ -19,11 +19,13 @@ permissions and limitations under the License.
 metadata {
 	definition (name: "wifi-irrigation", namespace: "webdes03", author: "Michael Greene") {
 		capability "Switch"
-		capability "refresh"
+		capability "Refresh"
+		capability "Polling"
 	}
 	
 	multiAttributeTile(name:"switch", type: "generic", width: 6, height: 4, canChangeIcon: true) {
 		tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
+			state("unknown", label:'${name}', action:"refresh.refresh", icon:"st.doors.garage.garage-open", backgroundColor:"#e5e5e5")
 			attributeState "off", label:'${name}', action:"switch.on", icon:"st.Outdoor.outdoor12", backgroundColor:"#ffffff", nextState:"turningOn"
 			attributeState "on", label:'${name}', action:"switch.off", icon:"st.Outdoor.outdoor12", backgroundColor:"#47bd18", nextState:"turningOff"
 			attributeState "turningOn", label:'${name}', action:"switch.on", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5", nextState:"on"
@@ -53,7 +55,12 @@ def off() {
 	sendParticleRelayCommand('relayOff')
 }
 
-def refresh(){
+def refresh() {
+	log.info "Refreshing ${device.name} ${device.label}"
+	getParticleRelayStatus()
+}
+
+def poll() {
 	log.info "Polling ${device.name} ${device.label}"
 	getParticleRelayStatus()
 }
@@ -65,10 +72,13 @@ private getParticleRelayStatus() {
 		uri: "https://api.particle.io/v1/devices/$deviceId/$queryVariable?access_token=$authorizationToken"
 	]
 	httpGet(params) { resp ->
-		def status = "off"
-		if (resp.data.result == 1) {
-			status = "on"
+		def newStatus = "unknown"
+		if (resp.data.result == 0) {
+			newStatus = "off"
+		} else if (resp.data.result == 1) {
+			newStatus = "on"
 		}
+		status = newStatus
 		log.info "${device.name} ${device.label}: Status: ${status}"
 		sendEvent(name: "switch", value: status, isStateChange: true)
 	}
