@@ -45,6 +45,10 @@ preferences {
     input("relayNumber", "text", title: "Relay ID (1-4)", required: true, displayDuringSetup: true) // relay number (1-4) the valve is connected to
 }
 
+def initialize() {
+	runEvery15Minutes(poll)
+}
+
 def on() {
 	log.info "${device.name} ${device.label}: Turning ON"
 	sendParticleRelayCommand('relayOn')
@@ -59,8 +63,6 @@ def refresh() {
 	log.info "Refreshing ${device.name} ${device.label}"
 	getParticleRelayStatus()
 }
-
-runEvery15Minutes(poll)
 
 def poll() {
 	log.info "Polling ${device.name} ${device.label}"
