@@ -46,7 +46,8 @@ preferences {
 }
 
 def initialize() {
-	runEvery5Minutes(poll)
+	log.info "${device.name}: Initializing"
+	getParticleRelayStatus()
 }
 
 def on() {
@@ -64,14 +65,9 @@ def refresh() {
 	getParticleRelayStatus()
 }
 
-def poll() {
-	log.info "Polling ${device.name}"
-	getParticleRelayStatus()
-}
-
 private getParticleRelayStatus() {
 	def queryVariable = "valve${relayNumber}"
-	log.info "attempting to get status of $queryVariable"
+	log.info "Getting status of $queryVariable"
 	def params = [
 		uri: "https://api.particle.io/v1/devices/$deviceId/$queryVariable?access_token=$authorizationToken"
 	]
