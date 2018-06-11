@@ -60,12 +60,12 @@ def refresh() {
 	getParticleRelayStatus()
 }
 
+runEvery15Minutes(poll)
+
 def poll() {
 	log.info "Polling ${device.name} ${device.label}"
 	getParticleRelayStatus()
 }
-
-runEvery15Minutes(poll)
 
 private getParticleRelayStatus() {
 	def queryVariable = "valve${relayNumber}"
