@@ -46,26 +46,26 @@ preferences {
 }
 
 def initialize() {
-	runEvery15Minutes(poll)
+	runEvery5Minutes(poll)
 }
 
 def on() {
-	log.info "${device.name} ${device.label}: Turning ON"
+	log.info "${device.name}: Turning ON"
 	sendParticleRelayCommand('relayOn')
 }
 
 def off() {
-	log.info "${device.name} ${device.label}: Turning OFF"
+	log.info "${device.name}: Turning OFF"
 	sendParticleRelayCommand('relayOff')
 }
 
 def refresh() {
-	log.info "Refreshing ${device.name} ${device.label}"
+	log.info "Refreshing ${device.name}"
 	getParticleRelayStatus()
 }
 
 def poll() {
-	log.info "Polling ${device.name} ${device.label}"
+	log.info "Polling ${device.name}"
 	getParticleRelayStatus()
 }
 
@@ -82,7 +82,7 @@ private getParticleRelayStatus() {
 		} else if (resp.data.result == 1) {
 			status = "on"
 		}
-		log.info "${device.name} ${device.label}: Status: ${status}"
+		log.info "${device.name}: Status: ${status}"
 		sendEvent(name: "switch", value: status, isStateChange: true)
 	}
 }
@@ -95,6 +95,8 @@ private sendParticleRelayCommand(command){
 	httpPostJson(params) { resp ->
         if (resp.data.return_value == 1) {
 			getParticleRelayStatus()
+		} else {
+			sendEvent(name: "switch", value: "unknown", isStateChange: true)
 		}
 	}
 }
