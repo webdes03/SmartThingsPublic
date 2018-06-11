@@ -65,6 +65,8 @@ def poll() {
 	getParticleRelayStatus()
 }
 
+runEvery15Minutes(poll)
+
 private getParticleRelayStatus() {
 	def queryVariable = "valve${relayNumber}"
 	log.info "attempting to get status of $queryVariable"
