@@ -46,12 +46,13 @@ preferences {
 }
 
 def installed() {
+	log.debug "${device.name}: Installed"
 	updated()
 }
 
 def updated() {
 	unschedule()
-	log.info "${device.name}: Initializing"
+	log.debug "${device.name}: Initializing"
 	runEvery5Minutes(getParticleRelayStatus())
 }
 
