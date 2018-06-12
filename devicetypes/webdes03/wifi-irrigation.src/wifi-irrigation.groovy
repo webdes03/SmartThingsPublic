@@ -70,7 +70,7 @@ def refresh() {
 	getParticleRelayStatus()
 }
 
-private getParticleRelayStatus() {
+def getParticleRelayStatus() {
 	def queryVariable = "valve${relayNumber}"
 	log.info "Getting status of $queryVariable"
 	def params = [
@@ -89,7 +89,7 @@ private getParticleRelayStatus() {
 	}
 }
 
-private sendParticleRelayCommand(command){
+def sendParticleRelayCommand(command){
 	def params = [
 		uri: "https://api.particle.io/v1/devices/$deviceId/$command?access_token=$authorizationToken",
 		body: [arg: relayNumber]
