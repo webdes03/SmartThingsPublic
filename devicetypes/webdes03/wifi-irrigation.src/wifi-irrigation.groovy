@@ -25,7 +25,7 @@ metadata {
 	
 	multiAttributeTile(name:"switch", type: "generic", width: 6, height: 4, canChangeIcon: true) {
 		tileAttribute ("device.switch", key: "PRIMARY_CONTROL") {
-			state("unknown", label:'${name}', action:"refresh.refresh", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5")
+			attributeState "unknown", label:'${name}', action:"refresh.refresh", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5"
 			attributeState "off", label:'${name}', action:"switch.on", icon:"st.Outdoor.outdoor12", backgroundColor:"#ffffff", nextState:"turningOn"
 			attributeState "on", label:'${name}', action:"switch.off", icon:"st.Outdoor.outdoor12", backgroundColor:"#47bd18", nextState:"turningOff"
 			attributeState "turningOn", label:'${name}', action:"switch.on", icon:"st.Outdoor.outdoor12", backgroundColor:"#e5e5e5", nextState:"on"
