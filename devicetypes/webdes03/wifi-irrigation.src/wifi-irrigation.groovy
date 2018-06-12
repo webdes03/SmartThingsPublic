@@ -53,7 +53,7 @@ def installed() {
 def updated() {
 	unschedule()
 	log.debug "${device.name}: Initializing"
-	runEvery5Minutes(getParticleRelayStatus())
+	runEvery5Minutes(getParticleRelayStatus)
 }
 
 def on() {
