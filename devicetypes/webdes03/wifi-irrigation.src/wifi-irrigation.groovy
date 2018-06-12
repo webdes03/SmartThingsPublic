@@ -53,7 +53,6 @@ def installed() {
 def updated() {
 	unschedule()
 	log.debug "${device.name}: Initializing"
-	runEvery5Minutes(getParticleRelayStatus)
 }
 
 def on() {
@@ -86,6 +85,7 @@ private getParticleRelayStatus() {
 		}
 		log.info "${device.name}: Status: ${status}"
 		sendEvent(name: "switch", value: status, isStateChange: true)
+		runIn(300, getParticleRelayStatus)
 	}
 }
 
